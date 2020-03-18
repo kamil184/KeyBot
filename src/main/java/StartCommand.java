@@ -25,27 +25,12 @@ public final class StartCommand extends BotsCommand {
         message.setChatId(chat.getId().toString());
         message.setText("Привет, я бот по продаже игровых ключей");
 
-        message.setReplyMarkup(getReplyKeyboard());
+        Menu menu = new Menu();
+
+        message.setReplyMarkup(menu.getMainMenuReplyKeyboard());
 
         execute(absSender, message, user);
     }
 
-    ReplyKeyboardMarkup getReplyKeyboard(){
-        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
-        ArrayList<KeyboardRow> keyboard = new ArrayList<>();
-        KeyboardRow helpRow = new KeyboardRow();
-        KeyboardRow choosePlatformRow = new KeyboardRow();
 
-        replyKeyboardMarkup.setOneTimeKeyboard(false);
-        replyKeyboardMarkup.setSelective(true);
-        replyKeyboardMarkup.setResizeKeyboard(true);
-
-        keyboard.clear();
-        helpRow.add(Constants.HELP);
-        choosePlatformRow.add(Constants.CHOOSE_PLATFORM);
-        keyboard.add(helpRow);
-        keyboard.add(choosePlatformRow);
-        replyKeyboardMarkup.setKeyboard(keyboard);
-        return replyKeyboardMarkup;
-    }
 }

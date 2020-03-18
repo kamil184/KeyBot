@@ -6,6 +6,7 @@ import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.util.ArrayList;
@@ -15,13 +16,13 @@ public class KeyBot extends TelegramLongPollingCommandBot {
 
     public KeyBot() {
         HelpCommand helpCommand = new HelpCommand(this);
-        register(helpCommand);
+        //register(helpCommand);
         BuyCommand buyCommand = new BuyCommand(this);
-        register(buyCommand);
+        //register(buyCommand);
         StartCommand startCommand = new StartCommand(this);
-        register(startCommand);
+        //register(startCommand);
         ChoosePlatformCommand choosePlatformCommand = new ChoosePlatformCommand(this);
-        register(choosePlatformCommand);
+        //register(choosePlatformCommand);
     }
 
     public String getBotUsername() {
@@ -31,7 +32,64 @@ public class KeyBot extends TelegramLongPollingCommandBot {
     @Override
     public void processNonCommandUpdate(Update update) {
         Message msg = update.getMessage();
-        sendMessageToUser(msg.getChatId(), "Такой команды нет, попробуй /help");
+        long chatId = msg.getChatId();
+        Buy buy = new Buy();
+        String comId;
+        Menu menu = new Menu();
+        switch (msg.getText()){
+            case Constants.STEAMKEY1: {
+                boolean b;
+                comId = buy.getAlphaNumericString(15);
+                sendMessageToUser(chatId,"Проведите платеж в размере 30 рублей на номер +79370073938 (qiwi), в комментарии укажите то, что я пришлю ниже.\n**Внимание!** Без этого комментария платеж засчитан не будет!");
+                sendMessageToUser(chatId,comId);
+                b=buy.Sell(30,comId);
+               // sendKeyboardMarkupToUser(chatId,menu.getMainMenuReplyKeyboard());
+                if(b) {
+                    sendMessageToUser(chatId, "Платеж найден, вот Ваш ключ:"); //todo достать из бд ключ
+                    sendKeyboardMarkupToUser(chatId,menu.getMainMenuReplyKeyboard(),"Возвращаю в меню");
+                }else
+                    sendMessageToUser(chatId,"Платеж не найден.\n Если Вы уверены, что это ошибка, обратитесь в раздел меню -> помощь.");
+                break;
+            }
+            case Constants.STEAMKEY2: {
+                boolean b;
+                comId= buy.getAlphaNumericString(15);
+                sendMessageToUser(chatId,"Проведите платеж в размере 120 руб на номер +79370073938 (qiwi), в комментарии укажите то, что я пришлю ниже.\n**Внимание!** Без этого комментария платеж засчитан не будет!");
+                sendMessageToUser(chatId,comId);
+                b=buy.Sell(120,comId);
+                //sendKeyboardMarkupToUser(chatId,menu.getMainMenuReplyKeyboard());
+                if(b) {
+                    sendMessageToUser(chatId, "Платеж найден, вот Ваш ключ:"); //todo достать из бд ключ
+                    sendKeyboardMarkupToUser(chatId, menu.getMainMenuReplyKeyboard(), "Возвращаю в меню");
+                }else
+                    sendMessageToUser(chatId,"Платеж не найден.\n Если Вы уверены, что это ошибка, обратитесь в раздел меню -> помощь.");
+                break;
+            }
+            case "Купить": {
+                sendKeyboardMarkupToUser(chatId,menu.getPlatformMenuReplyKeyboard(),"Выберите платформу");
+                break;
+            }
+            case "Steam": {
+                sendKeyboardMarkupToUser(chatId,menu.getSteamKeysMenuReplyKeyboard(),"Выберите товар");
+                break;
+            }
+            case "Origin":{
+                sendMessageToUser(chatId,"Упс,этот раздел еще в разработке...");
+                break;
+            }
+            case "Uplay":{
+                sendMessageToUser(chatId,"Упс,этот раздел еще в разработке...");
+                break;
+            }
+            case "Меню":{
+                sendKeyboardMarkupToUser(chatId,menu.getMainMenuReplyKeyboard(),"Выберите раздел меню");
+                break;
+            }
+            case "Помощь":{
+                sendMessageToUser(chatId,Constants.HELPTEXT);
+                break;
+            }
+        }
     }
 
     private void sendMessageToUser(long chatId, String text) {
@@ -44,25 +102,22 @@ public class KeyBot extends TelegramLongPollingCommandBot {
             System.err.println(e);
         }
     }
+    private void sendKeyboardMarkupToUser(long chatId,ReplyKeyboardMarkup replyKeyboardMarkup,String reply){
+       SendMessage message = new SendMessage();
+       message.setReplyMarkup(replyKeyboardMarkup);
+       message.setText(reply);
+        message.setChatId(chatId);
+        try {
+            execute(message);
+        } catch (TelegramApiException e) {
+            System.err.println(e);
+        }
+    }
+
 
     @Override
     public String getBotToken() {
         return "1121809496:AAHnrgriH3039nq59ePJyWoKXS1Mrc_y0uo";
-    }
-
-    public static SendMessage sendInlineKeyBoardMessage(long chatId, Message message) {
-        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
-        List<InlineKeyboardButton> keyboardButtonsRow1 = new ArrayList<>();
-        //List<InlineKeyboardButton> keyboardButtonsRow2 = new ArrayList<>();
-        keyboardButtonsRow1.add(new InlineKeyboardButton().setText("Зарегаться").setCallbackData("Создатель этого бота"));
-        keyboardButtonsRow1.add(new InlineKeyboardButton().setText("God").setCallbackData("This bot creator"));
-        keyboardButtonsRow1.add(new InlineKeyboardButton().setText("UserInfo").setCallbackData("Я знаю многое о тебе, " + getUserInfo(message, "userName") + " aka " + getUserInfo(message, "firstName") + " " + getUserInfo(message, "lastName")));
-        // keyboardButtonsRow2.add(inlineKeyboardButton2);
-        List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
-        rowList.add(keyboardButtonsRow1);
-        //rowList.add(keyboardButtonsRow2);
-        inlineKeyboardMarkup.setKeyboard(rowList);
-        return new SendMessage().setChatId(chatId).setText("Ну чтож").setReplyMarkup(inlineKeyboardMarkup);
     }
 
     private static String getUserInfo(Message message, String type) {
