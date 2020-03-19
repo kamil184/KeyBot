@@ -1,19 +1,11 @@
-import org.checkerframework.checker.units.qual.K;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.User;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
-import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import orm.Key;
 import orm.KeyDao;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class KeyBot extends TelegramLongPollingCommandBot {
 
@@ -38,11 +30,11 @@ public class KeyBot extends TelegramLongPollingCommandBot {
         long chatId = msg.getChatId();
         Menu menu = new Menu();
         switch (msg.getText()){
-            case Constants.STEAMKEY1: {
+            case Constants.STEAMKEY30: {
                 buy(Constants.STEAM, 30, chatId);
                 break;
             }
-            case Constants.STEAMKEY2: {
+            case Constants.STEAMKEY120: {
                 buy(Constants.STEAM, 120, chatId);
                 break;
             }
@@ -77,10 +69,11 @@ public class KeyBot extends TelegramLongPollingCommandBot {
         Buy buy = new Buy();
         Menu menu = new Menu();
         KeyDao dao = new KeyDao();
-        Key testKey = dao.get(platform, price);
-        if(testKey == null){
+        Key key = dao.get(platform, price);
+        if(key == null){
             sendMessageToUser(chatId,"Просим прощения, ключи " + platform + " по " + price + " рублей закончились, попробуйте купить в следующий раз или выберите другугой раздел");
         }else {
+            dao.reserve(key, chatId);
             boolean b;
             String comId = buy.getAlphaNumericString(15);
             sendMessageToUser(chatId, "Проведите платеж в размере " + price + " руб на номер +79370073938 (qiwi), в комментарии укажите то, что я пришлю ниже.\n**Внимание!** Без этого комментария платеж засчитан не будет!");
@@ -88,8 +81,6 @@ public class KeyBot extends TelegramLongPollingCommandBot {
             b = buy.Sell(price, comId);
             //sendKeyboardMarkupToUser(chatId,menu.getMainMenuReplyKeyboard());
             if (b) {
-                //Мы заново создаем объект Key, ведь предыдущий за 15 минут ожидания мог кто-то купить
-                Key key = dao.get(platform, price);
                 sendMessageToUser(chatId, "Платеж найден, вот Ваш ключ:");
                 sendMessageToUser(chatId, key.getKey());
                 dao.delete(key);

@@ -3,7 +3,6 @@ package orm;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Order;
 
 import java.util.List;
 
@@ -45,7 +44,7 @@ public class KeyDao {
     public Key get(String platform, int price) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         try {
-            Query idQuery = session.createQuery("SELECT Max(id) from Key where (platform = :platformParam and price = :priceParam)");
+            Query idQuery = session.createQuery("SELECT Max(id) from Key where (platform = :platformParam and price = :priceParam and reserved is null)");
             idQuery.setParameter("platformParam", platform);
             idQuery.setParameter("priceParam", price);
             List idList = idQuery.list();
@@ -57,5 +56,10 @@ public class KeyDao {
         }catch (Exception e){
             return null;
         }
+    }
+
+    public void reserve(Key key, long chatId){
+        key.setReserved(chatId);
+        update(key);
     }
 }
