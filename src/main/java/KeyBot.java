@@ -10,14 +10,8 @@ import orm.KeyDao;
 public class KeyBot extends TelegramLongPollingCommandBot {
 
     public KeyBot() {
-        //HelpCommand helpCommand = new HelpCommand(this);
-        //register(helpCommand);
-        //BuyCommand buyCommand = new BuyCommand(this);
-        //register(buyCommand);
         StartCommand startCommand = new StartCommand(this);
         register(startCommand);
-        //ChoosePlatformCommand choosePlatformCommand = new ChoosePlatformCommand(this);
-        //register(choosePlatformCommand);
     }
 
     public String getBotUsername() {
@@ -135,7 +129,7 @@ public class KeyBot extends TelegramLongPollingCommandBot {
         return "1121809496:AAHnrgriH3039nq59ePJyWoKXS1Mrc_y0uo";
     }
 
-    private static String getUserInfo(Message message, String type) {
+    /*private static String getUserInfo(Message message, String type) {
         switch (type) {
             case "firstName":
                 return message.getFrom().getFirstName();
@@ -147,5 +141,5 @@ public class KeyBot extends TelegramLongPollingCommandBot {
                 return message.getFrom().getUserName();
         }
         return null;
-    }
+    }*/
 }

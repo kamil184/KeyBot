@@ -30,6 +30,4 @@ public final class StartCommand extends BotsCommand {
 
         execute(absSender, message, user);
     }
-
-
 }

@@ -21,7 +21,7 @@ class Buy {
     boolean Sell(int sum, String comId) {
         boolean b = false;
         long t = System.currentTimeMillis();
-        long end = t + 300000; //todo поставить 900000 (15 минут)
+        long end = t + 900000;
         while (System.currentTimeMillis() < end) {
             b = request(comId, sum);
             if (b) {
