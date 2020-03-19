@@ -16,12 +16,23 @@ public class Key {
 
     private int price;
 
+    private long reserved;
+
     public Key() {}
 
-    public Key(String key, String platform, int price) {
+    public long getReserved() {
+        return reserved;
+    }
+
+    public void setReserved(long reserved) {
+        this.reserved = reserved;
+    }
+
+    public Key(String key, String platform, int price, long reserved) {
         this.key = key;
         this.platform = platform;
         this.price = price;
+        this.reserved = reserved;
     }
 
     public int getId() {

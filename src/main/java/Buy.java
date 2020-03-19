@@ -18,16 +18,13 @@ import java.util.regex.Pattern;
 
 class Buy {
 
-    boolean Sell(int sum,String comId){
-        boolean b =false;
-
-
-
-        long t= System.currentTimeMillis();
-        long end = t+300000; //todo поставить 900000 (15 минут)
-        while(System.currentTimeMillis() < end) {
-            b=request(comId,sum);
-            if(b){
+    boolean Sell(int sum, String comId) {
+        boolean b = false;
+        long t = System.currentTimeMillis();
+        long end = t + 300000; //todo поставить 900000 (15 минут)
+        while (System.currentTimeMillis() < end) {
+            b = request(comId, sum);
+            if (b) {
                 break;
             }
             try {
@@ -89,13 +86,13 @@ class Buy {
         arrayList = (ArrayList) someType.get("data");
 
         String regex1 = "(?<name>comment=";
-        regex1=regex1+id+")";
+        regex1 = regex1 + id + ")";
         String regex2 = "(?<name>total=\\{amount=";
-        regex2=regex2+sum+")";
+        regex2 = regex2 + sum + ")";
 
-        boolean comB=false,sumB=false,suc = false;
+        boolean comB = false, sumB = false, suc = false;
 
-        for (int i=0;i<10;i++){
+        for (int i = 0; i < 10; i++) {
 
             final Pattern pattern1 = Pattern.compile(regex1, Pattern.MULTILINE);
             final Matcher matcher = pattern1.matcher(arrayList.get(i).toString());
@@ -104,14 +101,14 @@ class Buy {
             final Matcher matcher2 = pattern2.matcher(arrayList.get(i).toString());
 
             if (matcher2.find()) {
-                sumB=true;
+                sumB = true;
                 comB = matcher.find();
-            }else {
-                sumB=false;
+            } else {
+                sumB = false;
             }
 
-            if(sumB&&comB){
-               //платеж найден
+            if (sumB && comB) {
+                //платеж найден
                 suc = true;
                 //TODO отправить из бд ключ
                 break;
@@ -121,7 +118,7 @@ class Buy {
     }
 
 
-    public String getAlphaNumericString(int n)    {
+    public String getAlphaNumericString(int n) {
         // длина ограничена 256 символами
         byte[] array = new byte[256];
         new Random().nextBytes(array);
@@ -132,14 +129,10 @@ class Buy {
         // Создать StringBuffer для сохранения результата
         StringBuffer r = new StringBuffer();
 
-
         // Добавляем первые 20 буквенно-цифровых символов
         // из сгенерированной случайной строки в результат
         for (int k = 0; k < randomString.length(); k++) {
-
-
             char ch = randomString.charAt(k);
-
 
             if (((ch >= 'a' && ch <= 'z')
                     || (ch >= 'A' && ch <= 'Z')
@@ -153,6 +146,4 @@ class Buy {
         // возвращаем результирующую строку
         return r.toString();
     }
-
-
 }
