@@ -1,3 +1,4 @@
+import org.checkerframework.checker.units.qual.K;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -8,6 +9,8 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMar
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import orm.Key;
+import orm.KeyDao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +48,10 @@ public class KeyBot extends TelegramLongPollingCommandBot {
                 b=buy.Sell(30,comId);
                // sendKeyboardMarkupToUser(chatId,menu.getMainMenuReplyKeyboard());
                 if(b) {
-                    sendMessageToUser(chatId, "Платеж найден, вот Ваш ключ:"); //todo достать из бд ключ
+                    KeyDao dao = new KeyDao();
+                    Key key = dao.get(Constants.STEAM, 30);
+                    sendMessageToUser(chatId, "Платеж найден, вот Ваш ключ:" + key.getKey());
+                    dao.delete(key);
                     sendKeyboardMarkupToUser(chatId,menu.getMainMenuReplyKeyboard(),"Возвращаю в меню");
                 }else
                     sendMessageToUser(chatId,"Платеж не найден.\n Если Вы уверены, что это ошибка, обратитесь в раздел меню -> помощь.");
@@ -59,7 +65,10 @@ public class KeyBot extends TelegramLongPollingCommandBot {
                 b=buy.Sell(120,comId);
                 //sendKeyboardMarkupToUser(chatId,menu.getMainMenuReplyKeyboard());
                 if(b) {
-                    sendMessageToUser(chatId, "Платеж найден, вот Ваш ключ:"); //todo достать из бд ключ
+                    KeyDao dao = new KeyDao();
+                    Key key = dao.get(Constants.STEAM, 120);
+                    sendMessageToUser(chatId, "Платеж найден, вот Ваш ключ:" + key.getKey());
+                    dao.delete(key);
                     sendKeyboardMarkupToUser(chatId, menu.getMainMenuReplyKeyboard(), "Возвращаю в меню");
                 }else
                     sendMessageToUser(chatId,"Платеж не найден.\n Если Вы уверены, что это ошибка, обратитесь в раздел меню -> помощь.");
