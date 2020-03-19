@@ -71,7 +71,7 @@ public class KeyBot extends TelegramLongPollingCommandBot {
         KeyDao dao = new KeyDao();
         Key key = dao.get(platform, price);
         if(key == null){
-            sendMessageToUser(chatId,"Просим прощения, ключи " + platform + " по " + price + " рублей закончились, попробуйте купить в следующий раз или выберите другугой раздел");
+            sendMessageToUser(chatId,"Просим прощения, ключи " + platform + " по " + price + " рублей закончились, попробуйте купить в следующий раз или выберите другой раздел");
         }else {
             dao.reserve(key, chatId);
             boolean b;
