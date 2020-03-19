@@ -38,6 +38,10 @@ public class KeyBot extends TelegramLongPollingCommandBot {
                 buy(Constants.STEAM, 50, chatId);
                 break;
             }
+            case Constants.STEAMKEYAAA: {
+                buy(Constants.STEAM, 250, chatId);
+                break;
+            }
             case "Купить": {
                 sendKeyboardMarkupToUser(chatId,menu.getPlatformMenuReplyKeyboard(),"Выберите платформу");
                 break;
