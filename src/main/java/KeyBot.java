@@ -30,12 +30,12 @@ public class KeyBot extends TelegramLongPollingCommandBot {
         long chatId = msg.getChatId();
         Menu menu = new Menu();
         switch (msg.getText()){
-            case Constants.STEAMKEY30: {
-                buy(Constants.STEAM, 30, chatId);
+            case Constants.STEAMKEY15: {
+                buy(Constants.STEAM, 15, chatId);
                 break;
             }
-            case Constants.STEAMKEY120: {
-                buy(Constants.STEAM, 120, chatId);
+            case Constants.STEAMKEY50: {
+                buy(Constants.STEAM, 50, chatId);
                 break;
             }
             case "Купить": {
@@ -59,8 +59,19 @@ public class KeyBot extends TelegramLongPollingCommandBot {
                 break;
             }
             case "Помощь":{
-                sendMessageToUser(chatId,Constants.HELPTEXT);
+                sendKeyboardMarkupToUser(chatId,menu.getHelpMenuReplyKeyboard(),Constants.INFOTEXT);
                 break;
+            }
+            case Constants.HELPSTEAMKEY15:{
+                sendMessageToUser(chatId,Constants.INFOSTEAMKEY15);
+                break;
+            }
+            case Constants.HELPSTEAMKEY50:{
+                sendMessageToUser(chatId,Constants.INFOSTEAMKEY50);
+                break;
+            }
+            case Constants.HELPSTEAMKEYAAA:{
+                sendMessageToUser(chatId,Constants.INFOSTEAMKEYAAA);
             }
         }
     }

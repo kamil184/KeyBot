@@ -53,6 +53,7 @@ public class Menu {
         ArrayList<KeyboardRow> keyboard = new ArrayList<>();
         KeyboardRow steamKeyRow1 = new KeyboardRow();
         KeyboardRow steamKeyRow2 = new KeyboardRow();
+        KeyboardRow steamKeyRow3 = new KeyboardRow();
         KeyboardRow menuRow2 = new KeyboardRow();
 
 
@@ -63,6 +64,7 @@ public class Menu {
         keyboard.clear();
         steamKeyRow1.add(Constants.STEAMKEY15);
         steamKeyRow2.add(Constants.STEAMKEY50);
+        steamKeyRow3.add(Constants.STEAMKEYAAA);
         menuRow2.add(Constants.MENU);
         keyboard.add(steamKeyRow1);
         keyboard.add(steamKeyRow2);
