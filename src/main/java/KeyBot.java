@@ -10,13 +10,13 @@ import orm.KeyDao;
 public class KeyBot extends TelegramLongPollingCommandBot {
 
     public KeyBot() {
-        HelpCommand helpCommand = new HelpCommand(this);
+        //HelpCommand helpCommand = new HelpCommand(this);
         //register(helpCommand);
-        BuyCommand buyCommand = new BuyCommand(this);
+        //BuyCommand buyCommand = new BuyCommand(this);
         //register(buyCommand);
         StartCommand startCommand = new StartCommand(this);
-        //register(startCommand);
-        ChoosePlatformCommand choosePlatformCommand = new ChoosePlatformCommand(this);
+        register(startCommand);
+        //ChoosePlatformCommand choosePlatformCommand = new ChoosePlatformCommand(this);
         //register(choosePlatformCommand);
     }
 

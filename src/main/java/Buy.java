@@ -110,7 +110,7 @@ class Buy {
             if (sumB && comB) {
                 //платеж найден
                 suc = true;
-                //TODO отправить из бд ключ
+
                 break;
             }
         }
