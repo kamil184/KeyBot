@@ -22,6 +22,7 @@ class Buy {
         boolean b = false;
         long t = System.currentTimeMillis();
         long end = t + 900000;
+
         while (System.currentTimeMillis() < end) {
             b = request(comId, sum);
             if (b) {
