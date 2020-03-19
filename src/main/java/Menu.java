@@ -61,8 +61,8 @@ public class Menu {
         replyKeyboardMarkup.setResizeKeyboard(true);
 
         keyboard.clear();
-        steamKeyRow1.add(Constants.STEAMKEY30);
-        steamKeyRow2.add(Constants.STEAMKEY120);
+        steamKeyRow1.add(Constants.STEAMKEY1);
+        steamKeyRow2.add(Constants.STEAMKEY2);
         menuRow2.add(Constants.MENU);
         keyboard.add(steamKeyRow1);
         keyboard.add(steamKeyRow2);
