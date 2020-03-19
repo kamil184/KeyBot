@@ -85,8 +85,10 @@ public class KeyBot extends TelegramLongPollingCommandBot {
                 sendMessageToUser(chatId, key.getKey());
                 dao.delete(key);
                 sendKeyboardMarkupToUser(chatId, menu.getMainMenuReplyKeyboard(), "Возвращаю в меню");
-            } else
+            } else {
+                dao.reserve(key, -1);
                 sendMessageToUser(chatId, "Платеж не найден.\n Если Вы уверены, что это ошибка, обратитесь в раздел меню -> помощь.");
+            }
         }
     }
 
