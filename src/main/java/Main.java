@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        /*Map<String, String> jdbcUrlSettings = new HashMap<>();
+        Map<String, String> jdbcUrlSettings = new HashMap<>();
         String jdbcDbUrl = System.getenv("JDBC_DATABASE_URL");
         if (null != jdbcDbUrl) {
             jdbcUrlSettings.put("hibernate.connection.url", System.getenv("JDBC_DATABASE_URL"));
@@ -17,7 +17,7 @@ public class Main {
         new StandardServiceRegistryBuilder().
                 configure("hibernate.cfg.xml").
                 applySettings(jdbcUrlSettings).
-                build();*/
+                build();
 
         ApiContextInitializer.init();
         TelegramBotsApi botsApi = new TelegramBotsApi();
