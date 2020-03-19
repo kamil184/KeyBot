@@ -68,6 +68,7 @@ public class Menu {
         menuRow2.add(Constants.MENU);
         keyboard.add(steamKeyRow1);
         keyboard.add(steamKeyRow2);
+        keyboard.add(steamKeyRow3);
         keyboard.add(menuRow2);
         replyKeyboardMarkup.setKeyboard(keyboard);
         return replyKeyboardMarkup;
