@@ -36,42 +36,14 @@ public class KeyBot extends TelegramLongPollingCommandBot {
     public void processNonCommandUpdate(Update update) {
         Message msg = update.getMessage();
         long chatId = msg.getChatId();
-        Buy buy = new Buy();
-        String comId;
         Menu menu = new Menu();
         switch (msg.getText()){
             case Constants.STEAMKEY1: {
-                boolean b;
-                comId = buy.getAlphaNumericString(15);
-                sendMessageToUser(chatId,"Проведите платеж в размере 30 рублей на номер +79370073938 (qiwi), в комментарии укажите то, что я пришлю ниже.\n**Внимание!** Без этого комментария платеж засчитан не будет!");
-                sendMessageToUser(chatId,comId);
-                b=buy.Sell(30,comId);
-               // sendKeyboardMarkupToUser(chatId,menu.getMainMenuReplyKeyboard());
-                if(b) {
-                    KeyDao dao = new KeyDao();
-                    Key key = dao.get(Constants.STEAM, 30);
-                    sendMessageToUser(chatId, "Платеж найден, вот Ваш ключ:" + key.getKey());
-                    dao.delete(key);
-                    sendKeyboardMarkupToUser(chatId,menu.getMainMenuReplyKeyboard(),"Возвращаю в меню");
-                }else
-                    sendMessageToUser(chatId,"Платеж не найден.\n Если Вы уверены, что это ошибка, обратитесь в раздел меню -> помощь.");
+                buy(Constants.STEAM, 30, chatId);
                 break;
             }
             case Constants.STEAMKEY2: {
-                boolean b;
-                comId= buy.getAlphaNumericString(15);
-                sendMessageToUser(chatId,"Проведите платеж в размере 120 руб на номер +79370073938 (qiwi), в комментарии укажите то, что я пришлю ниже.\n**Внимание!** Без этого комментария платеж засчитан не будет!");
-                sendMessageToUser(chatId,comId);
-                b=buy.Sell(120,comId);
-                //sendKeyboardMarkupToUser(chatId,menu.getMainMenuReplyKeyboard());
-                if(b) {
-                    KeyDao dao = new KeyDao();
-                    Key key = dao.get(Constants.STEAM, 120);
-                    sendMessageToUser(chatId, "Платеж найден, вот Ваш ключ:" + key.getKey());
-                    dao.delete(key);
-                    sendKeyboardMarkupToUser(chatId, menu.getMainMenuReplyKeyboard(), "Возвращаю в меню");
-                }else
-                    sendMessageToUser(chatId,"Платеж не найден.\n Если Вы уверены, что это ошибка, обратитесь в раздел меню -> помощь.");
+                buy(Constants.STEAM, 120, chatId);
                 break;
             }
             case "Купить": {
@@ -98,6 +70,32 @@ public class KeyBot extends TelegramLongPollingCommandBot {
                 sendMessageToUser(chatId,Constants.HELPTEXT);
                 break;
             }
+        }
+    }
+
+    private void buy(String platform, int price, long chatId){
+        Buy buy = new Buy();
+        Menu menu = new Menu();
+        KeyDao dao = new KeyDao();
+        Key testKey = dao.get(platform, price);
+        if(testKey == null){
+            sendMessageToUser(chatId,"Просим прощения, ключи " + platform + " по " + price + " рублей закончились, попробуйте купить в следующий раз или выберите другугой раздел");
+        }else {
+            boolean b;
+            String comId = buy.getAlphaNumericString(15);
+            sendMessageToUser(chatId, "Проведите платеж в размере " + price + " руб на номер +79370073938 (qiwi), в комментарии укажите то, что я пришлю ниже.\n**Внимание!** Без этого комментария платеж засчитан не будет!");
+            sendMessageToUser(chatId, comId);
+            b = buy.Sell(price, comId);
+            //sendKeyboardMarkupToUser(chatId,menu.getMainMenuReplyKeyboard());
+            if (b) {
+                //Мы заново создаем объект Key, ведь предыдущий за 15 минут ожидания мог кто-то купить
+                Key key = dao.get(platform, price);
+                sendMessageToUser(chatId, "Платеж найден, вот Ваш ключ:");
+                sendMessageToUser(chatId, key.getKey());
+                dao.delete(key);
+                sendKeyboardMarkupToUser(chatId, menu.getMainMenuReplyKeyboard(), "Возвращаю в меню");
+            } else
+                sendMessageToUser(chatId, "Платеж не найден.\n Если Вы уверены, что это ошибка, обратитесь в раздел меню -> помощь.");
         }
     }
 

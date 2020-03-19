@@ -44,13 +44,18 @@ public class KeyDao {
 
     public Key get(String platform, int price) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Query idQuery = session.createQuery("SELECT Max(id) from Key where (platform = :platformParam and price = :priceParam)");
-        idQuery.setParameter("platformParam", platform);
-        idQuery.setParameter("priceParam", price);
-        int maxId = (int) idQuery.list().get(0);
-        Query query = session.createQuery("from Key where id = :idParam");
-        query.setParameter("idParam", maxId);
-        Key key = (Key) query.list().get(0);
-        return key;
+        try {
+            Query idQuery = session.createQuery("SELECT Max(id) from Key where (platform = :platformParam and price = :priceParam)");
+            idQuery.setParameter("platformParam", platform);
+            idQuery.setParameter("priceParam", price);
+            List idList = idQuery.list();
+            int maxId = (int) idList.get(0);
+            Query query = session.createQuery("from Key where id = :idParam");
+            query.setParameter("idParam", maxId);
+            Key key = (Key) query.list().get(0);
+            return key;
+        }catch (Exception e){
+            return null;
+        }
     }
 }
