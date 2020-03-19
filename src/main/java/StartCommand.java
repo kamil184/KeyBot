@@ -26,7 +26,6 @@ public final class StartCommand extends BotsCommand {
         message.setText("Привет, я бот по продаже игровых ключей");
 
         Menu menu = new Menu();
-
         message.setReplyMarkup(menu.getMainMenuReplyKeyboard());
 
         execute(absSender, message, user);

@@ -44,7 +44,7 @@ public class KeyDao {
     public Key get(String platform, int price) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         try {
-            Query idQuery = session.createQuery("SELECT Max(id) from Key where (platform = :platformParam and price = :priceParam and reserved is null)");
+            Query idQuery = session.createQuery("SELECT Max(id) from Key where (platform = :platformParam and price = :priceParam and reserved = -1)");
             idQuery.setParameter("platformParam", platform);
             idQuery.setParameter("priceParam", price);
             List idList = idQuery.list();
