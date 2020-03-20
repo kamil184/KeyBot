@@ -5,6 +5,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import orm.Key;
+import orm.KeyBill;
+import orm.KeyBillDao;
 import orm.KeyDao;
 
 public class KeyBot extends TelegramLongPollingCommandBot {
@@ -100,6 +102,14 @@ public class KeyBot extends TelegramLongPollingCommandBot {
                     sendMessageToUser(chatId, key.getKey());
                     dao.delete(key);
                     sendKeyboardMarkupToUser(chatId, menu.getMainMenuReplyKeyboard(), "Возвращаю в меню");
+                    KeyBillDao keyBillDao = new  KeyBillDao();
+                    KeyBill bill = new KeyBill();
+                    bill.setPlatform(platform);
+                    bill.setPrice(price);
+                    bill.setChatId(chatId);
+                    keyBillDao.save(bill);
+                    /*sendMessageToUser(901156877, "Купили ключ за " + price);
+                    sendMessageToUser(430148873, "Купили ключ за " + price);*/
                 } else {
                     dao.reserve(key, -1);
                     sendMessageToUser(chatId, "Платеж не найден.\n Если Вы уверены, что это ошибка, обратитесь в раздел меню -> помощь.");
