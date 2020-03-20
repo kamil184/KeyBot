@@ -27,15 +27,15 @@ public class KeyBot extends TelegramLongPollingCommandBot {
         Menu menu = new Menu();
         switch (msg.getText()) {
             case Constants.STEAMKEY15: {
-                buy(Constants.STEAM, 15, chatId);
+                buy(Constants.STEAM, 10, chatId);
                 break;
             }
             case Constants.STEAMKEY50: {
-                buy(Constants.STEAM, 50, chatId);
+                buy(Constants.STEAM, 25, chatId);
                 break;
             }
             case Constants.STEAMKEYAAA: {
-                buy(Constants.STEAM, 250, chatId);
+                buy(Constants.STEAM, 199, chatId);
                 break;
             }
             case "Купить": {
