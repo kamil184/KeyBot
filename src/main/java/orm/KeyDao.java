@@ -68,7 +68,7 @@ public class KeyDao {
             Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
             Query query = session.createQuery("from Key where reserved = :reserveParam");
             query.setParameter("reserveParam", chatId);
-            Key key = (Key) query.list().get(0);
+            query.list();
             return true;
         } catch (Exception e) {
             return false;
