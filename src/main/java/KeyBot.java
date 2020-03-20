@@ -25,7 +25,7 @@ public class KeyBot extends TelegramLongPollingCommandBot {
         Message msg = update.getMessage();
         long chatId = msg.getChatId();
         Menu menu = new Menu();
-        switch (msg.getText()){
+        switch (msg.getText()) {
             case Constants.STEAMKEY15: {
                 buy(Constants.STEAM, 15, chatId);
                 break;
@@ -39,57 +39,59 @@ public class KeyBot extends TelegramLongPollingCommandBot {
                 break;
             }
             case "Купить": {
-                sendKeyboardMarkupToUser(chatId,menu.getPlatformMenuReplyKeyboard(),"Выберите платформу");
+                sendKeyboardMarkupToUser(chatId, menu.getPlatformMenuReplyKeyboard(), "Выберите платформу");
                 break;
             }
             case "Steam": {
-                sendKeyboardMarkupToUser(chatId,menu.getSteamKeysMenuReplyKeyboard(),"Выберите товар");
+                sendKeyboardMarkupToUser(chatId, menu.getSteamKeysMenuReplyKeyboard(), "Выберите товар");
                 break;
             }
-            case "Origin":{
-                sendMessageToUser(chatId,"Упс,этот раздел еще в разработке...");
+            case "Origin": {
+                sendMessageToUser(chatId, "Упс,этот раздел еще в разработке...");
                 break;
             }
-            case "Uplay":{
-                sendMessageToUser(chatId,"Упс,этот раздел еще в разработке...");
+            case "Uplay": {
+                sendMessageToUser(chatId, "Упс,этот раздел еще в разработке...");
                 break;
             }
-            case "Меню":{
-                sendKeyboardMarkupToUser(chatId,menu.getMainMenuReplyKeyboard(),"Выберите раздел меню");
+            case "Меню": {
+                sendKeyboardMarkupToUser(chatId, menu.getMainMenuReplyKeyboard(), "Выберите раздел меню");
                 break;
             }
-            case "Помощь":{
-                sendKeyboardMarkupToUser(chatId,menu.getHelpMenuReplyKeyboard(),Constants.INFOTEXT);
+            case "Помощь": {
+                sendKeyboardMarkupToUser(chatId, menu.getHelpMenuReplyKeyboard(), Constants.INFOTEXT);
                 break;
             }
-            case Constants.HELPSTEAMKEY15:{
-                sendMessageToUser(chatId,Constants.INFOSTEAMKEY15);
+            case Constants.HELPSTEAMKEY15: {
+                sendMessageToUser(chatId, Constants.INFOSTEAMKEY15);
                 break;
             }
-            case Constants.HELPSTEAMKEY50:{
-                sendMessageToUser(chatId,Constants.INFOSTEAMKEY50);
+            case Constants.HELPSTEAMKEY50: {
+                sendMessageToUser(chatId, Constants.INFOSTEAMKEY50);
                 break;
             }
-            case Constants.HELPSTEAMKEYAAA:{
-                sendMessageToUser(chatId,Constants.INFOSTEAMKEYAAA);
+            case Constants.HELPSTEAMKEYAAA: {
+                sendMessageToUser(chatId, Constants.INFOSTEAMKEYAAA);
+                break;
             }
-            default:{
-                if (!msg.getText().equals("/start")){
+            default: {
+                if (!msg.getText().equals("/start")) {
                     sendMessageToUser(chatId, "Извини, но я тебя не понимаю, \nпопробуй нажать /start");
                 }
+                break;
             }
         }
     }
 
-    private void buy(String platform, int price, long chatId){
+    private void buy(String platform, int price, long chatId) {
         Thread method2Thread = new Thread(() -> {
             Buy buy = new Buy();
             Menu menu = new Menu();
             KeyDao dao = new KeyDao();
             Key key = dao.get(platform, price);
-            if(key == null){
-                sendMessageToUser(chatId,"Просим прощения, ключи " + platform + " по " + price + " рублей закончились, попробуйте купить в следующий раз или выберите другой раздел");
-            }else {
+            if (key == null) {
+                sendMessageToUser(chatId, "Просим прощения, ключи " + platform + " по " + price + " рублей закончились, попробуйте купить в следующий раз или выберите другой раздел");
+            } else {
                 dao.reserve(key, chatId);
                 boolean b;
                 String comId = buy.getAlphaNumericString(15);
@@ -102,7 +104,7 @@ public class KeyBot extends TelegramLongPollingCommandBot {
                     sendMessageToUser(chatId, key.getKey());
                     dao.delete(key);
                     sendKeyboardMarkupToUser(chatId, menu.getMainMenuReplyKeyboard(), "Возвращаю в меню");
-                    KeyBillDao keyBillDao = new  KeyBillDao();
+                    KeyBillDao keyBillDao = new KeyBillDao();
                     KeyBill bill = new KeyBill();
                     bill.setPlatform(platform);
                     bill.setPrice(price);
@@ -115,7 +117,8 @@ public class KeyBot extends TelegramLongPollingCommandBot {
                     sendMessageToUser(chatId, "Платеж не найден.\n Если Вы уверены, что это ошибка, обратитесь в раздел меню -> помощь.");
                 }
             }
-        });method2Thread.start();
+        });
+        method2Thread.start();
     }
 
     private void sendMessageToUser(long chatId, String text) {
@@ -128,10 +131,11 @@ public class KeyBot extends TelegramLongPollingCommandBot {
             System.err.println(e);
         }
     }
-    private void sendKeyboardMarkupToUser(long chatId,ReplyKeyboardMarkup replyKeyboardMarkup,String reply){
-       SendMessage message = new SendMessage();
-       message.setReplyMarkup(replyKeyboardMarkup);
-       message.setText(reply);
+
+    private void sendKeyboardMarkupToUser(long chatId, ReplyKeyboardMarkup replyKeyboardMarkup, String reply) {
+        SendMessage message = new SendMessage();
+        message.setReplyMarkup(replyKeyboardMarkup);
+        message.setText(reply);
         message.setChatId(chatId);
         try {
             execute(message);
