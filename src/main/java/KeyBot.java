@@ -85,36 +85,40 @@ public class KeyBot extends TelegramLongPollingCommandBot {
 
     private void buy(String platform, int price, long chatId) {
         Thread method2Thread = new Thread(() -> {
-            Buy buy = new Buy();
-            Menu menu = new Menu();
             KeyDao dao = new KeyDao();
-            Key key = dao.get(platform, price);
-            if (key == null) {
-                sendMessageToUser(chatId, "Просим прощения, ключи " + platform + " по " + price + " рублей закончились, попробуйте купить в следующий раз или выберите другой раздел");
-            } else {
-                dao.reserve(key, chatId);
-                boolean b;
-                String comId = buy.getAlphaNumericString(15);
-                sendMessageToUser(chatId, "Проведите платеж в размере " + price + " руб на номер +79370073938 (qiwi), в комментарии укажите то, что я пришлю ниже.\n**Внимание!** Без этого комментария платеж засчитан не будет!");
-                sendMessageToUser(chatId, comId);
-                b = buy.Sell(price, comId);
-                //sendKeyboardMarkupToUser(chatId,menu.getMainMenuReplyKeyboard());
-                if (b) {
-                    sendMessageToUser(chatId, "Платеж найден, вот Ваш ключ:");
-                    sendMessageToUser(chatId, key.getKey());
-                    dao.delete(key);
-                    sendKeyboardMarkupToUser(chatId, menu.getMainMenuReplyKeyboard(), "Возвращаю в меню");
-                    KeyBillDao keyBillDao = new KeyBillDao();
-                    KeyBill bill = new KeyBill();
-                    bill.setPlatform(platform);
-                    bill.setPrice(price);
-                    bill.setChatId(chatId);
-                    keyBillDao.save(bill);
+            if (dao.isReserved(chatId)){
+                sendMessageToUser(chatId, "Нельзя покупать второй ключ, не оплатив первый");
+            }else {
+                Buy buy = new Buy();
+                Menu menu = new Menu();
+                Key key = dao.get(platform, price);
+                if (key == null) {
+                    sendMessageToUser(chatId, "Просим прощения, ключи " + platform + " по " + price + " рублей закончились, попробуйте купить в следующий раз или выберите другой раздел");
+                } else {
+                    dao.reserve(key, chatId);
+                    boolean b;
+                    String comId = buy.getAlphaNumericString(15);
+                    sendMessageToUser(chatId, "Проведите платеж в размере " + price + " руб на номер +79370073938 (qiwi), в комментарии укажите то, что я пришлю ниже.\n**Внимание!** Без этого комментария платеж засчитан не будет!");
+                    sendMessageToUser(chatId, comId);
+                    b = buy.Sell(price, comId);
+                    //sendKeyboardMarkupToUser(chatId,menu.getMainMenuReplyKeyboard());
+                    if (b) {
+                        sendMessageToUser(chatId, "Платеж найден, вот Ваш ключ:");
+                        sendMessageToUser(chatId, key.getKey());
+                        dao.delete(key);
+                        sendKeyboardMarkupToUser(chatId, menu.getMainMenuReplyKeyboard(), "Возвращаю в меню");
+                        KeyBillDao keyBillDao = new KeyBillDao();
+                        KeyBill bill = new KeyBill();
+                        bill.setPlatform(platform);
+                        bill.setPrice(price);
+                        bill.setChatId(chatId);
+                        keyBillDao.save(bill);
                     /*sendMessageToUser(901156877, "Купили ключ за " + price);
                     sendMessageToUser(430148873, "Купили ключ за " + price);*/
-                } else {
-                    dao.reserve(key, -1);
-                    sendMessageToUser(chatId, "Платеж не найден.\n Если Вы уверены, что это ошибка, обратитесь в раздел меню -> помощь.");
+                    } else {
+                        dao.reserve(key, -1);
+                        sendMessageToUser(chatId, "Платеж не найден.\n Если Вы уверены, что это ошибка, обратитесь в раздел меню -> помощь.");
+                    }
                 }
             }
         });

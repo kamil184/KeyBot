@@ -53,13 +53,25 @@ public class KeyDao {
             query.setParameter("idParam", maxId);
             Key key = (Key) query.list().get(0);
             return key;
-        }catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
 
-    public void reserve(Key key, long chatId){
+    public void reserve(Key key, long chatId) {
         key.setReserved(chatId);
         update(key);
+    }
+
+    public boolean isReserved(long chatId) {
+        try {
+            Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+            Query query = session.createQuery("from Key where reserved = :reserveParam");
+            query.setParameter("reserveParam", chatId);
+            Key key = (Key) query.list().get(0);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
