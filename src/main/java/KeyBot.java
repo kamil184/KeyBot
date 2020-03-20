@@ -73,7 +73,7 @@ public class KeyBot extends TelegramLongPollingCommandBot {
             }
             default:{
                 if (!msg.getText().equals("/start")){
-                    sendMessageToUser(chatId, "Извини, но я тебя не понимаю \n попробуй нажать /start");
+                    sendMessageToUser(chatId, "Извини, но я тебя не понимаю, \nпопробуй нажать /start");
                 }
             }
         }
