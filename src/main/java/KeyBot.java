@@ -105,6 +105,14 @@ public class KeyBot extends TelegramLongPollingCommandBot {
                     if (b) {
                         sendMessageToUser(chatId, "Платеж найден, вот Ваш ключ:");
                         sendMessageToUser(chatId, key.getKey());
+                        Key secondKey = dao.get(platform, 1);
+                        if(secondKey == null){
+                            sendMessageToUser(chatId, "Просим прощения, подарочные ключи закончились");
+                        }else {
+                            sendMessageToUser(chatId, "А это дополнительный ключ:");
+                            sendMessageToUser(chatId, secondKey.getKey());
+                            dao.delete(secondKey);
+                        }
                         dao.delete(key);
                         sendKeyboardMarkupToUser(chatId, menu.getMainMenuReplyKeyboard(), "Возвращаю в меню");
                         KeyBillDao keyBillDao = new KeyBillDao();
