@@ -35,7 +35,7 @@ public class KeyBot extends TelegramLongPollingCommandBot {
                 break;
             }
             case Constants.STEAMKEYAAA: {
-                buy(Constants.STEAM, 250, chatId);
+                buy(Constants.STEAM, 120, chatId);
                 break;
             }
             case "Купить": {

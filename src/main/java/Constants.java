@@ -51,9 +51,9 @@ public class Constants {
     public static final String STEAMKEY50 = "Рандом игра стим за 50 рублей";
     public static final String HELPSTEAMKEY50 = "Рандом игра стим за 50 рублей?";
     public static final String HELPSTEAMKEY15 = "Рандом игра стим за 15 рублей?";
-    public static final String HELPSTEAMKEYAAA = "Рандом ААА игра стим за 250 рублей?";
+    public static final String HELPSTEAMKEYAAA = "Рандом ААА игра стим за 120 рублей?";
     public static final String INFOSTEAMKEY50 = "Рандом ключ от игры в стим\nСтоймость игры 149-999 руб, ключ 100% рабочий!";
-    public static final String STEAMKEYAAA = "Рандом AAA игра стим за 250 рублей";
+    public static final String STEAMKEYAAA = "Рандом AAA игра стим за 120 рублей";
     public static final String INFOSTEAMKEYAAA = "Рандом ключ от AAA игры в стим. Стоймость игры 349-999 руб, ключ 100% рабочий!\nСписок игр:\n►Age of Wonders III |499p| [steam key];\n►Vendetta - Curse of Raven's Cry |515p| [steam key];\n►DiRT Rally |799p| [steam key]";
     public static final String MENU = "Меню";
     public static final String INFOTEXT = "Бот выдает рандомные ключи в определенном ценовом сегменте, но любая игра стоит ДОРОЖЕ, чем ключ, поэтому Вы можете испытывать удачу, не боясь уйти в минус! Мы стараемся улучшать бота и добавлять в него новые игры, разделы и платформы, спасибо , что покупаете у нас! Если у вас возникли проблемы, то обращайтесь к @kamil184 и @SofHacker\nВыберите раздел, по которому у Вас возник вопрос:";
