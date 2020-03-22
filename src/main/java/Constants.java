@@ -7,7 +7,7 @@ public class Constants {
     public static final String STEAM = "Steam";
     public static final String ORIGIN = "Origin";
     public static final String UPLAY = "Uplay";
-    public static final String STEAMKEY15 = "Рандом игра стим за 15 рублей";
+    public static final String STEAMKEY15 = "Рандом игра стим за 10 рублей";
     public static final String INFOSTEAMKEY15 = "Рандом ключ от игры в стим\nСтоймость игры 39-499 рублей, ключ 100% рабочий!\nСписок игр:\n►3SwitcheD\n" +
             "►A Story About My Uncle\n" +
             "►Ablepsia\n" +
@@ -48,9 +48,9 @@ public class Constants {
             "►Two Worlds II Castle Defense\n" +
             "►Typical Nightmare\n" +
             "►WeakWood Throne";
-    public static final String STEAMKEY50 = "Рандом игра стим за 50 рублей";
-    public static final String HELPSTEAMKEY50 = "Рандом игра стим за 50 рублей?";
-    public static final String HELPSTEAMKEY15 = "Рандом игра стим за 15 рублей?";
+    public static final String STEAMKEY50 = "Рандом игра стим за 25 рублей";
+    public static final String HELPSTEAMKEY50 = "Рандом игра стим за 25 рублей?";
+    public static final String HELPSTEAMKEY15 = "Рандом игра стим за 10 рублей?";
     public static final String HELPSTEAMKEYAAA = "Рандом ААА игра стим за 120 рублей?";
     public static final String INFOSTEAMKEY50 = "Рандом ключ от игры в стим\nСтоймость игры 149-999 руб, ключ 100% рабочий!";
     public static final String STEAMKEYAAA = "Рандом AAA игра стим за 120 рублей";
