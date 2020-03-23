@@ -58,7 +58,7 @@ public class KeyBot extends TelegramLongPollingCommandBot {
                 sendKeyboardMarkupToUser(chatId, menu.getRandomSteamKeysMenuReplyKeyboard(), "Выберите товар");
                 break;
             }
-            case "AAA игры": {
+            case "ключи от AAA игр": {
                 sendKeyboardMarkupToUser(chatId, menu.getAAASteamKeysMenuReplyKeyboard(), "Выберите товар");
                 break;
             }
