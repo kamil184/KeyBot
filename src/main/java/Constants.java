@@ -8,6 +8,10 @@ public class Constants {
     public static final String ORIGIN = "Origin";
     public static final String UPLAY = "Uplay";
     public static final String STEAMKEY15 = "Рандом игра стим за 10 рублей";
+    public static final String STEAMKEY5 = "Рандом игра стим за 5 рублей";
+    public static final String STEAMKEYGTA = "Ключ ГТА 5 за 199 рублей";
+    public static final String STEAMKEYSAAA = "Ключи от ААА игр";
+    public static final String STEAMKEYSRANDOM = "Рандом ключи";
     public static final String INFOSTEAMKEY15 = "Рандом ключ от игры в стим\nСтоймость игры 39-499 рублей, ключ 100% рабочий!\nСписок игр:\n►3SwitcheD\n" +
             "►A Story About My Uncle\n" +
             "►Ablepsia\n" +
@@ -51,8 +55,10 @@ public class Constants {
     public static final String STEAMKEY50 = "Рандом игра стим за 25 рублей";
     public static final String HELPSTEAMKEY50 = "Рандом игра стим за 25 рублей?";
     public static final String HELPSTEAMKEY15 = "Рандом игра стим за 10 рублей?";
+    public static final String HELPSTEAMKEY5 = "Рандом игра стим за 5 рублей?";
     public static final String HELPSTEAMKEYAAA = "Рандом ААА игра стим за 120 рублей?";
     public static final String INFOSTEAMKEY50 = "Рандом ключ от игры в стим\nСтоймость игры 149-999 руб, ключ 100% рабочий!";
+    public static final String INFOSTEAMKEY5 = "Рандом ключ от игры в стим. Идеально подойдет для фарма/розыгрышей!\nСтоймость игры 20+ руб, ключ 100% рабочий!";
     public static final String STEAMKEYAAA = "Рандом AAA игра стим за 120 рублей";
     public static final String INFOSTEAMKEYAAA = "Рандом ключ от AAA игры в стим. Стоймость игры 349-999 руб, ключ 100% рабочий!\nСписок игр:\n►Age of Wonders III |499p| [steam key];\n►Vendetta - Curse of Raven's Cry |515p| [steam key];\n►DiRT Rally |799p| [steam key]";
     public static final String MENU = "Меню";

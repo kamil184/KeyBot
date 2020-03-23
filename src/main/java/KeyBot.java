@@ -38,12 +38,28 @@ public class KeyBot extends TelegramLongPollingCommandBot {
                 buy(Constants.STEAM, 120, chatId);
                 break;
             }
+            case Constants.STEAMKEY5: {
+                buy(Constants.STEAM, 5, chatId);
+                break;
+            }
+            case Constants.STEAMKEYGTA: {
+                buy(Constants.STEAM, 299, chatId);
+                break;
+            }
             case "Купить": {
                 sendKeyboardMarkupToUser(chatId, menu.getPlatformMenuReplyKeyboard(), "Выберите платформу");
                 break;
             }
             case "Steam": {
                 sendKeyboardMarkupToUser(chatId, menu.getSteamKeysMenuReplyKeyboard(), "Выберите товар");
+                break;
+            }
+            case "Рандом ключи": {
+                sendKeyboardMarkupToUser(chatId, menu.getRandomSteamKeysMenuReplyKeyboard(), "Выберите товар");
+                break;
+            }
+            case "AAA игры": {
+                sendKeyboardMarkupToUser(chatId, menu.getAAASteamKeysMenuReplyKeyboard(), "Выберите товар");
                 break;
             }
             case "Origin": {

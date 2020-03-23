@@ -48,12 +48,13 @@ public class Menu {
         return replyKeyboardMarkup;
     }
 
-    ReplyKeyboardMarkup getSteamKeysMenuReplyKeyboard(){
+    ReplyKeyboardMarkup getRandomSteamKeysMenuReplyKeyboard(){
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
         ArrayList<KeyboardRow> keyboard = new ArrayList<>();
         KeyboardRow steamKeyRow1 = new KeyboardRow();
         KeyboardRow steamKeyRow2 = new KeyboardRow();
         KeyboardRow steamKeyRow3 = new KeyboardRow();
+        KeyboardRow steamKeyRow4 = new KeyboardRow();
         KeyboardRow menuRow2 = new KeyboardRow();
 
 
@@ -62,6 +63,7 @@ public class Menu {
         replyKeyboardMarkup.setResizeKeyboard(true);
 
         keyboard.clear();
+        steamKeyRow4.add(Constants.STEAMKEY5);
         steamKeyRow1.add(Constants.STEAMKEY15);
         steamKeyRow2.add(Constants.STEAMKEY50);
         steamKeyRow3.add(Constants.STEAMKEYAAA);
@@ -69,10 +71,54 @@ public class Menu {
         keyboard.add(steamKeyRow1);
         keyboard.add(steamKeyRow2);
         keyboard.add(steamKeyRow3);
+        keyboard.add(steamKeyRow4);
         keyboard.add(menuRow2);
         replyKeyboardMarkup.setKeyboard(keyboard);
         return replyKeyboardMarkup;
     }
+
+    ReplyKeyboardMarkup getAAASteamKeysMenuReplyKeyboard(){
+        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
+        ArrayList<KeyboardRow> keyboard = new ArrayList<>();
+        KeyboardRow steamKeyRow1 = new KeyboardRow();
+        KeyboardRow menuRow2 = new KeyboardRow();
+
+
+        replyKeyboardMarkup.setOneTimeKeyboard(true);
+        replyKeyboardMarkup.setSelective(true);
+        replyKeyboardMarkup.setResizeKeyboard(true);
+
+        keyboard.clear();
+        steamKeyRow1.add(Constants.STEAMKEYGTA);
+        menuRow2.add(Constants.MENU);
+        keyboard.add(steamKeyRow1);
+        keyboard.add(menuRow2);
+        replyKeyboardMarkup.setKeyboard(keyboard);
+        return replyKeyboardMarkup;
+    }
+    ReplyKeyboardMarkup getSteamKeysMenuReplyKeyboard(){
+        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
+        ArrayList<KeyboardRow> keyboard = new ArrayList<>();
+        KeyboardRow steamKeyRow1 = new KeyboardRow();
+        KeyboardRow steamKeyRow2 = new KeyboardRow();
+        KeyboardRow menuRow2 = new KeyboardRow();
+
+
+        replyKeyboardMarkup.setOneTimeKeyboard(true);
+        replyKeyboardMarkup.setSelective(true);
+        replyKeyboardMarkup.setResizeKeyboard(true);
+
+        keyboard.clear();
+        steamKeyRow2.add(Constants.STEAMKEYSAAA);
+        steamKeyRow1.add(Constants.STEAMKEYSRANDOM);
+        menuRow2.add(Constants.MENU);
+        keyboard.add(steamKeyRow1);
+        keyboard.add(steamKeyRow2);
+        keyboard.add(menuRow2);
+        replyKeyboardMarkup.setKeyboard(keyboard);
+        return replyKeyboardMarkup;
+    }
+
     ReplyKeyboardMarkup getHelpMenuReplyKeyboard(){
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
         ArrayList<KeyboardRow> keyboard = new ArrayList<>();
