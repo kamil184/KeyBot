@@ -9,7 +9,7 @@ public class Constants {
     public static final String UPLAY = "Uplay";
     public static final String STEAMKEY15 = "Рандом игра стим за 10 рублей";
     public static final String STEAMKEY5 = "Рандом игра стим за 5 рублей";
-    public static final String STEAMKEYGTA = "Ключ ГТА 5 за 199 рублей";
+    public static final String STEAMKEYGTA = "Ключ ГТА 5 за 199 рублей (шанс 40%)";
     public static final String STEAMKEYSAAA = "Ключи от ААА игр";
     public static final String STEAMKEYSRANDOM = "Рандом ключи";
     public static final String INFOSTEAMKEY15 = "Рандом ключ от игры в стим\nСтоймость игры 39-499 рублей, ключ 100% рабочий!\nСписок игр:\n►3SwitcheD\n" +
