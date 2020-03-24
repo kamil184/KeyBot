@@ -125,6 +125,7 @@ public class Menu {
         KeyboardRow steamKeyRow1 = new KeyboardRow();
         KeyboardRow steamKeyRow2 = new KeyboardRow();
         KeyboardRow steamKeyRow3 = new KeyboardRow();
+        KeyboardRow steamKeyRow4 = new KeyboardRow();
         KeyboardRow menuRow2 = new KeyboardRow();
 
 
@@ -136,10 +137,12 @@ public class Menu {
         steamKeyRow1.add(Constants.HELPSTEAMKEY15);
         steamKeyRow2.add(Constants.HELPSTEAMKEY50);
         steamKeyRow3.add(Constants.HELPSTEAMKEYAAA);
+        steamKeyRow4.add(Constants.HELPSTEAMKEY5);
         menuRow2.add(Constants.MENU);
         keyboard.add(steamKeyRow1);
         keyboard.add(steamKeyRow2);
         keyboard.add(steamKeyRow3);
+        keyboard.add(steamKeyRow4);
         keyboard.add(menuRow2);
         replyKeyboardMarkup.setKeyboard(keyboard);
         return replyKeyboardMarkup;

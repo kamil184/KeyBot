@@ -90,6 +90,10 @@ public class KeyBot extends TelegramLongPollingCommandBot {
                 sendMessageToUser(chatId, Constants.INFOSTEAMKEYAAA);
                 break;
             }
+            case Constants.HELPSTEAMKEY5: {
+                sendMessageToUser(chatId, Constants.INFOSTEAMKEY5);
+                break;
+            }
             default: {
                 if (!msg.getText().equals("/start")) {
                     sendMessageToUser(chatId, "Извини, но я тебя не понимаю, \nпопробуй нажать /start");
