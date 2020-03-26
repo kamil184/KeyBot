@@ -6,6 +6,7 @@ public class Constants {
     public static final String CHOOSE_PLATFORM = "Купить"; // OR "Выбрать платформу"
     public static final String STEAM = "Steam";
     public static final String ORIGIN = "Origin";
+    public static final String ORIGINACC = "Origin аккаунт за 30 рублей";
     public static final String UPLAY = "Uplay";
     public static final String STEAMKEY15 = "Рандом игра стим за 10 рублей";
     public static final String STEAMKEY5 = "Рандом игра стим за 5 рублей";
@@ -55,12 +56,14 @@ public class Constants {
     public static final String STEAMKEY50 = "Рандом игра стим за 25 рублей";
     public static final String HELPSTEAMKEY50 = "Рандом игра стим за 25 рублей?";
     public static final String HELPSTEAMKEY15 = "Рандом игра стим за 10 рублей?";
+    public static final String HELPORIGINACC = "Origin аккаунт за 30 рублей?";
     public static final String HELPSTEAMKEY5 = "Рандом игра стим за 5 рублей?";
     public static final String HELPSTEAMKEYAAA = "Рандом ААА игра стим за 120 рублей?";
     public static final String INFOSTEAMKEY50 = "Рандом ключ от игры в стим\nСтоймость игры 149-999 руб, ключ 100% рабочий!";
     public static final String INFOSTEAMKEY5 = "Рандом ключ от игры в стим. Идеально подойдет для фарма/розыгрышей!\nСтоймость игры 20+ руб, ключ 100% рабочий!";
     public static final String STEAMKEYAAA = "Рандом AAA игра стим за 120 рублей";
     public static final String INFOSTEAMKEYAAA = "Рандом ключ от AAA игры в стим. Стоймость игры 349-999 руб, ключ 100% рабочий!\nСписок игр:\n►Age of Wonders III |499p| [steam key];\n►Vendetta - Curse of Raven's Cry |515p| [steam key];\n►DiRT Rally |799p| [steam key]";
+    public static final String INFOORIGINACC = "Origin аккаунт с рандом играми, например:\n►Battlefield I/IV\n►Fifa18\n►STAR WARS Battlefront\n►Apex Legends\n►The Sims 4";
     public static final String MENU = "Меню";
     public static final String INFOTEXT = "Бот выдает рандомные ключи в определенном ценовом сегменте, но любая игра стоит ДОРОЖЕ, чем ключ, поэтому Вы можете испытывать удачу, не боясь уйти в минус! Все ключи в разделе \"Ключи от ААА игр\" выпадают с шансом 40%. Мы стараемся улучшать бота и добавлять в него новые игры, разделы и платформы, спасибо , что покупаете у нас! Совершая покупку в этом боте, вы автоматически соглашаетесь со всеми рисками! Если у вас возникли проблемы, то обращайтесь к @kamil184 и @SofHacker\nВыберите раздел, по которому у Вас возник вопрос:";
 }

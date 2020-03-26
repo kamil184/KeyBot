@@ -63,7 +63,11 @@ public class KeyBot extends TelegramLongPollingCommandBot {
                 break;
             }
             case "Origin": {
-                sendMessageToUser(chatId, "Упс,этот раздел еще в разработке...");
+               sendKeyboardMarkupToUser(chatId,menu.getOriginMenuReplyKeyboard(),"Выберите товар");
+                break;
+            }
+            case Constants.ORIGINACC: {
+                buy(Constants.ORIGIN,30,chatId);
                 break;
             }
             case "Uplay": {
@@ -92,6 +96,10 @@ public class KeyBot extends TelegramLongPollingCommandBot {
             }
             case Constants.HELPSTEAMKEY5: {
                 sendMessageToUser(chatId, Constants.INFOSTEAMKEY5);
+                break;
+            }
+            case Constants.HELPORIGINACC:{
+                sendMessageToUser(chatId, Constants.INFOORIGINACC);
                 break;
             }
             default: {

@@ -119,6 +119,26 @@ public class Menu {
         return replyKeyboardMarkup;
     }
 
+    ReplyKeyboardMarkup getOriginMenuReplyKeyboard(){
+        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
+        ArrayList<KeyboardRow> keyboard = new ArrayList<>();
+        KeyboardRow steamKeyRow1 = new KeyboardRow();
+        KeyboardRow menuRow2 = new KeyboardRow();
+
+
+        replyKeyboardMarkup.setOneTimeKeyboard(true);
+        replyKeyboardMarkup.setSelective(true);
+        replyKeyboardMarkup.setResizeKeyboard(true);
+
+        keyboard.clear();
+        steamKeyRow1.add(Constants.ORIGINACC);
+        menuRow2.add(Constants.MENU);
+        keyboard.add(steamKeyRow1);
+        keyboard.add(menuRow2);
+        replyKeyboardMarkup.setKeyboard(keyboard);
+        return replyKeyboardMarkup;
+    }
+
     ReplyKeyboardMarkup getHelpMenuReplyKeyboard(){
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
         ArrayList<KeyboardRow> keyboard = new ArrayList<>();
@@ -126,6 +146,7 @@ public class Menu {
         KeyboardRow steamKeyRow2 = new KeyboardRow();
         KeyboardRow steamKeyRow3 = new KeyboardRow();
         KeyboardRow steamKeyRow4 = new KeyboardRow();
+        KeyboardRow steamKeyRow5 = new KeyboardRow();
         KeyboardRow menuRow2 = new KeyboardRow();
 
 
@@ -138,11 +159,13 @@ public class Menu {
         steamKeyRow2.add(Constants.HELPSTEAMKEY50);
         steamKeyRow3.add(Constants.HELPSTEAMKEYAAA);
         steamKeyRow4.add(Constants.HELPSTEAMKEY5);
+        steamKeyRow5.add(Constants.HELPORIGINACC);
         menuRow2.add(Constants.MENU);
         keyboard.add(steamKeyRow1);
         keyboard.add(steamKeyRow2);
         keyboard.add(steamKeyRow3);
         keyboard.add(steamKeyRow4);
+        keyboard.add(steamKeyRow5);
         keyboard.add(menuRow2);
         replyKeyboardMarkup.setKeyboard(keyboard);
         return replyKeyboardMarkup;
